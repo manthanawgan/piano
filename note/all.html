@@ -1,0 +1,84 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Piano Notes</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #1a1a1a; /* Dark background */
+            color: #e0e0e0; /* Light text */
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            height: 100vh;
+            margin: 0;
+        }
+        .container {
+            background-color: #333; /* Darker container background */
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+            width: 80%;
+            max-width: 800px;
+            text-align: center;
+            overflow: auto;
+        }
+        h1 {
+            color: #66ccff; /* Light blue heading */
+        }
+        ul {
+            list-style-type: none;
+            padding: 0;
+        }
+        li {
+            margin: 10px 0;
+        }
+        a {
+            color: #4db8ff; /* Light blue link */
+            text-decoration: none;
+        }
+        a:hover {
+            text-decoration: underline;
+        }
+        .home-link {
+            margin-top: 20px;
+            display: inline-block;
+            padding: 10px 15px;
+            background-color: #4db8ff; /* Light blue button */
+            color: #1a1a1a; /* Dark text */
+            border-radius: 5px;
+            text-decoration: none;
+            transition: background-color 0.3s ease;
+        }
+        .home-link:hover {
+            background-color: #1a8cff; /* Darker blue on hover */
+        }
+    </style>
+    <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+</head>
+<body>
+    <div class="container">
+        <h1>Piano Notes</h1>
+        <ul>
+            <li><a href="#" onclick="loadMarkdown('cornfield-chase.md')">Cornfield Chase - Interstellar Soundtrack</a></li>
+            <!-- Add more links as needed -->
+        </ul>
+        <a href="../index.html" class="home-link">Go Home</a>
+        <div id="content"></div>
+    </div>
+    <script>
+        async function loadMarkdown(file) {
+            try {
+                const response = await fetch(file);
+                const text = await response.text();
+                document.getElementById('content').innerHTML = marked.parse(text);
+            } catch (error) {
+                console.error('Error fetching the Markdown file:', error);
+            }
+        }
+    </script>
+</body>
+</html>
